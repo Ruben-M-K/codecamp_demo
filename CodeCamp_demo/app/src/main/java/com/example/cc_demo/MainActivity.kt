@@ -12,19 +12,29 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.cc_demo.ui.navigation.BottomBar
+import com.example.cc_demo.ui.navigation.NavigationGraph
 import com.example.cc_demo.ui.theme.Cc_demoTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
+            val navController = rememberNavController()
             Cc_demoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                   Row(modifier = Modifier.padding(innerPadding)){
-                       Text("Hello, Codecamp!")
-                   }
-                }
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = { BottomBar(navController = navController) },
+                    content = {it ->
+                        Row(modifier = Modifier.padding(it)) {
+                           NavigationGraph(navController = navController)
+                        }
+                    }
+                )
             }
         }
     }
