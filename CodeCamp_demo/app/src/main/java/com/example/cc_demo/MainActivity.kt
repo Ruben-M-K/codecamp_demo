@@ -16,7 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.cc_demo.ui.navigation.BottomBar
 import com.example.cc_demo.ui.navigation.NavigationGraph
 import com.example.cc_demo.ui.theme.Cc_demoTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
