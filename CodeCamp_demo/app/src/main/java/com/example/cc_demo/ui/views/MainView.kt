@@ -37,7 +37,7 @@ fun MainView(
             Text("Fetch Weather Data")
         }
 
-        Text(text = "Temperature: ${weather}")
+        Text(text = "Temperature: ${weather?.temperature}")
     }
 
 }

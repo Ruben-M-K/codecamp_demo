@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(
     private val _uiStateFlow = MutableStateFlow(MainViewState())
     val uiStateFlow: StateFlow<MainViewState> = _uiStateFlow
 
-    val WORK_KEY = "weather"
+    val weatherData = weatherRepository.weatherFlow
 
     init {
         viewModelScope.launch {
@@ -29,12 +29,15 @@ class MainViewModel @Inject constructor(
                 _uiStateFlow.value = _uiStateFlow.value.copy(connection = it)
             }
         }
+
+        viewModelScope.launch{
+            _uiStateFlow.value = _uiStateFlow.value.copy(weatherData = weatherData)
+        }
     }
 
     fun fetchWeatherData(){
         viewModelScope.launch {
             weatherRepository.fetchWeatherData()
-            _uiStateFlow.value = _uiStateFlow.value.copy(weatherData = weatherRepository.weatherFlow)
         }
     }
 

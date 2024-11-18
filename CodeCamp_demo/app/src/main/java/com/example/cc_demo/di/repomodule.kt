@@ -54,6 +54,10 @@ object repomodule {
     }
 
     @Provides
+    fun provideWeatherAPI(retroFitHolder: RetroFitHolder): WeatherService {
+        return retroFitHolder.weatherRetrofit.create(WeatherService::class.java)
+    }
+    @Provides
     fun providesDatabase(@ApplicationContext context: Context): WeatherDatabase {
         return Room.databaseBuilder(
             context, WeatherDatabase::class.java, "weatherdatabase"

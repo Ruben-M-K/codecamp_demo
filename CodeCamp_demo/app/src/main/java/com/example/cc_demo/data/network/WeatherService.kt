@@ -1,6 +1,6 @@
 package com.example.cc_demo.data.network
 
-import com.example.cc_demo.data.model.WeatherData
+import com.example.cc_demo.data.database.model.WeatherData
 import retrofit2.Response
 import retrofit2.http.GET
 

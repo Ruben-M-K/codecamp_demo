@@ -48,7 +48,7 @@ class SettingsViewModel @Inject constructor(
         val weatherWorkRequest =
             PeriodicWorkRequestBuilder<AppWorker>(15, TimeUnit.MINUTES).build()
         workManger.enqueueUniquePeriodicWork(
-            WORK_KEY, ExistingPeriodicWorkPolicy.UPDATE, weatherWorkRequest
+            WORK_KEY, ExistingPeriodicWorkPolicy.CANCEL_AND_REENQUEUE, weatherWorkRequest
         )
     }
 
